@@ -17,6 +17,7 @@ public class Animal {
     private Long id;
 
 
+//    @Column(name = "nome_animal", unique = true, nullable = false)
     private String nome;
     private String especie;
     private String cor;
