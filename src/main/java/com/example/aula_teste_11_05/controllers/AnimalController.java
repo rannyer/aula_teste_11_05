@@ -24,4 +24,13 @@ public class AnimalController {
     public ResponseEntity<Animal> salvar(@RequestBody Animal animal){
         return ResponseEntity.ok(animalService.salvar(animal));
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> pegarPeloId(@PathVariable Long id){
+        try{
+            return ResponseEntity.ok(animalService.buscarPorId(id));
+        }catch (RuntimeException e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 }

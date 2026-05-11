@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AnimalService {
@@ -19,6 +20,14 @@ public class AnimalService {
 
     public List<Animal> pegarTodos(){
         return animalRepository.findAll();
+    }
+    public Animal buscarPorId(Long id){
+        Optional<Animal> animalOptional = animalRepository.findById(id);
+
+        if(animalOptional.isEmpty()){
+            throw new RuntimeException("Animal não encontrado");
+        }
+        return animalOptional.get();
     }
 
     public Animal salvar(Animal animal){
