@@ -33,4 +33,12 @@ public class AnimalController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deletar(@PathVariable Long id){
+        try {
+            return ResponseEntity.ok(animalService.deletar(id));
+        }catch (RuntimeException e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 }

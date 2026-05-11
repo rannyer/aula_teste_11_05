@@ -22,16 +22,23 @@ public class AnimalService {
         return animalRepository.findAll();
     }
     public Animal buscarPorId(Long id){
+        return animalRepository.findById(id).orElseThrow(
+                () ->  new  RuntimeException("Animal não encontrado")
+        );
+    }
+
+    public Animal salvar(Animal animal){
+        return animalRepository.save(animal);
+    }
+    public String deletar(Long id){
         Optional<Animal> animalOptional = animalRepository.findById(id);
 
         if(animalOptional.isEmpty()){
             throw new RuntimeException("Animal não encontrado");
         }
-        return animalOptional.get();
-    }
 
-    public Animal salvar(Animal animal){
-        return animalRepository.save(animal);
+        animalRepository.deleteById(id);
+        return "Animal excluido com sucesso";
     }
 
 
