@@ -95,6 +95,7 @@ public class AnimalControllerTest {
             .body("especie", equalTo("Cachorro"))
             .body("cor", equalTo("caramelo"))
             .log().all();
+
     }
 
 
